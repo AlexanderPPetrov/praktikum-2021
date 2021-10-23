@@ -104,6 +104,8 @@ Object.keys(dataObject).forEach(key => {
 })
 
 
+
+
 async function getData() {
     // Do a request
     // wait for response
