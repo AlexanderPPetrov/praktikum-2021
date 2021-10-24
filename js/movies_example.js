@@ -25,13 +25,15 @@ function getMovies(params = {}) {
 }
 
 function renderMovieList(movies = []){
-    $('#movie-list').empty();
+    $movieList = $('#movie-list');
+    $movieList.empty();
     movies.forEach(movie => {
-        renderMovie(movie);
+        const $template = getMovieTemplate(movie);
+        $movieList.append($template);
     })
 }
 
-function renderMovie(movie){
+function getMovieTemplate(movie){
     const $template = $($('#movie-template').html());
     $template.find('.movie-title').text(movie.title);
     $template.find('.movie-poster').attr('src', `${imageBaseUrl}${movie.poster_path}`);
@@ -40,7 +42,7 @@ function renderMovie(movie){
     $template.find('.movie-release-date').text(date);
     $template.find('.movie-overview').text(movie.overview);
     $template.find('.movie-vote').text(movie.vote_average);
-    $('#movie-list').append($template);
+    return $template;
 }
 
 $('#get-movies').click(()=> {
